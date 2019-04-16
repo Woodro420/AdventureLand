@@ -49,7 +49,8 @@ function on_party_invite(name) {
 }
 
 //Target ID
-var monster_targets = ["bat", "mvampire", "phoenix"];
+var priority_targets = ["phoenix", "mvampire", "goldenbat"]
+var monster_targets = ["bat"];
 
 //Send Items to merchant if in range of character
 setInterval(function () {
@@ -128,27 +129,44 @@ function state_controller()
 //This function contains our logic for when we're farming mobs
 function farm()
 {
-	var target = find_viable_targets()[0];
+	var target = find_priority_targets()[0];
 	//Attack or move to target
-    if (target != null) {
-        if (distance_to_point(target.real_x, target.real_y) < character.range) {
-            if (can_attack(target)) {
-                attack(target);
-            }
-        }
-        else {
-            move_to_target(target);
-        }
+  if (target != null) {
+      if (distance_to_point(target.real_x, target.real_y) < character.range) {
+					if (target.target != "Sozaw") {
+						taunt(target)
+					}
+          if (can_attack(target)) {
+              attack(target);
+          }
+      }
+      else {
+          move_to_target(target);
+      }
 	}
 	else
 	{
-		if (!smart.moving) {
-			game_log("finding a target");
-            smart_move({ to: monster_targets[0] });
-        }
+		var target = find_viable_targets()[0];
+		//Attack or move to target
+	    if (target != null) {
+	        if (distance_to_point(target.real_x, target.real_y) < character.range) {
+	            if (can_attack(target)) {
+	                attack(target);
+	            }
+	        }
+	        else {
+	            move_to_target(target);
+	        }
+		}
+		else
+		{
+			if (!smart.moving) {
+				game_log("finding a target");
+	            smart_move({ to: monster_targets[0] });
+	    }
+		}
 	}
 }
-
 //This function contains our logic during resupply runs
 function resupply_potions()
 {
