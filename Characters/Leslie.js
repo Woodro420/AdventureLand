@@ -60,25 +60,14 @@ Everything within the braces of the function combatScript() is the syntax that
 will make your character do things, in this case fight.
 */
 function combatScript(){
-	/*
-	To stop your character from using a potion everytime you lose a little bit
-	of health or mana we need to make sure it only happens when you are
-	below a minimum amount of health or mana. Note that once it executes it
-	will always cause your character to use both HP and MP regardless of
-	the amount of health or mana lost.
-	*/
 
-	//Current treshold for using a Health Potion
-	var useHPTreshold = character.max_hp / 2;
-	//Current treshold for using a Mana Potion
-	var useMPTreshold = character.max_mp / 2;
 
 	/*
 	If your mana or health is below its treshold use a HP and MP if applicable
 	*/
-	    if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp < 0.25) {
-        use_hp_or_mp();
-    }
+if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp < 0.25) {
+  use_hp_or_mp();
+}
 	//Loot everything in your current proximity
 	loot();
 
@@ -122,8 +111,7 @@ function combatScript(){
 	}
 	//If in attack range, attack and output to the console.
 	else if (can_attack(target)) {
-
-		set_message("Attacking");
+    set_message("Attacking");
 		attack(target);
 	}
 }
