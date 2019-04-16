@@ -1,12 +1,58 @@
+//Party Handler
+var group = ["Woodro", "Heawon", "Leslie"];
+
+setInterval(function () {
+
+		let player1 = get_player("Heawon");
+		if (player1 == null) return;
+		if (player1.visible == null) return;
+		if (get_player("Heawon").party != "Woodro") {
+			send_party_invite(player1)
+		}
+		let player2 = get_player("Leslie");
+		if (player2 == null) return;
+		if (player2.visible == null) return;
+		if (get_player("Leslie").party != "Woodro") {
+			send_party_invite(player2);
+		}
+     else {
+        if (character.party) {
+            if (character.party != group[0]) {
+                parent.socket.emit("party", {event: "leave"})
+            }
+        } else {
+            send_party_request(group[0]);
+        }
+    }
+}, 1000 * 10);
+
+setInterval(function () {
+
+		if (get_active_characters().Heawon === undefined) {
+			start_character("Heawon", 3)
+		}
+		if (get_active_characters().Leslie === undefined) {
+			start_character("Leslie", 2)
+		}
+}, 1000);
+function on_party_request(name) {
+    console.log("Party Request");
+    if (group.indexOf(name) != -1) {
+        accept_party_request(name);
+    }
+}
+function on_party_invite(name) {
+    console.log("Party Invite");
+    if (group.indexOf(name) != -1) {
+        accept_party_invite(name);
+    }
+}
+
 //Target ID
-var monster_targets = ["mvampire",
-					   	  "bat",
-					      "goldenbat"
-					     ];
+var monster_targets = ["mvampire", "bat", "goldenbat"];
 
 //Send Items to merchant if in range of character
-setInterval(function ()
-{
+setInterval(function () {
     let items = parent.character.items
     let player = get_player("Woegraf");
     if (player == null) return;
@@ -19,13 +65,6 @@ setInterval(function ()
     }
 }, 1000);
 
-//Party Handler
-setInterval(function() {
-	send_party_invite("Heawon");
-	send_party_invite("Leslie");
-	accept_party_invite("Leslie");
-	accept_party_invite("Heawon");
-					  }, 1000*60);
 
 var state = "farm";
 var min_potions = 50; //The number of potions at which to do a resupply run.
