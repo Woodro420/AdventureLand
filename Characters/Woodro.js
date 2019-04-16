@@ -311,3 +311,56 @@ function find_viable_targets() {
     });
     return monsters;
 }
+
+//Same as above but for priority instead
+function find_priority_targets() {
+    var monsters = Object.values(parent.entities).filter(
+        mob => (mob.target == null
+                    || parent.party_list.includes(mob.target)
+                    || mob.target == character.name)
+                && (mob.type == "monster"
+                    && (parent.party_list.includes(mob.target)
+                        || mob.target == character.name))
+                    || priority_targets.includes(mob.mtype));
+
+    for (id in monsters) {
+        var monster = monsters[id];
+
+        if (parent.party_list.includes(monster.target)
+                    || monster.target == character.name) {
+            monster.targeting_party = 1;
+        }
+        else {
+            monster.targeting_party = 0;
+        }
+    }
+
+    //Order monsters by whether they're attacking us, then by distance.
+    monsters.sort(function (current, next) {
+        if (current.targeting_party > next.targeting_party) {
+            return -1;
+        }
+        var dist_current = distance(character, current);
+        var dist_next = distance(character, next);
+        // Else go to the 2nd item
+        if (dist_current < dist_next) {
+            return -1;
+        }
+        else if (dist_current > dist_next) {
+            return 1
+        }
+        else {
+            return 0;
+        }
+    });
+    return monsters;
+}
+//taunt an enemy who is targeting an ally
+var tauntcd;
+function taunt(target) {
+  //Curse only if target hasn't been cursed and if curse is off cd (cd is 5sec).
+  if (!tauntcd || new Date() - tauntcd > 3000) {
+    tauntcd = new Date();
+    parent.use_skill("taunt", target.id);
+  }
+}
