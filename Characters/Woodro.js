@@ -133,7 +133,7 @@ function farm()
 	//Attack or move to target
   if (target != null) {
       if (distance_to_point(target.real_x, target.real_y) < character.range) {
-					if (target.target != "Sozaw") {
+					if (target.target != "Woodro") {
 						taunt(target)
 					}
           if (can_attack(target)) {
