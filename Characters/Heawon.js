@@ -80,7 +80,6 @@ function combatScript(){
 	*/
 	if (character.hp / character.max_hp < 0.70 || character.mp / character.max_mp < 0.50)  {
 		//use_hp_or_mp();
-		log("Healing myself")
 		heal(character)
 	    }
 
@@ -90,14 +89,12 @@ function combatScript(){
 	//Healing the party
 	var WoodCHP = (get_player("Woodro").hp);
 	var WoodMHP = (get_player("Woodro").max_hp);
-    var LesCHP = (get_player("Leslie").hp);
+  var LesCHP = (get_player("Leslie").hp);
 	var LesMHP = (get_player("Leslie").max_hp);
 	    if (WoodCHP / WoodMHP < 0.90) {
-		   log("Healing Woodro!");
 		   heal(Woodro);
 	    }
 	    else if (LesCHP / LesMHP < 0.90) {
-		   log("Healing Valcrum!");
 		   heal(Leslie);
 	    }
 
