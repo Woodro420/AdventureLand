@@ -1,4 +1,3 @@
-load_code(99)
 //Target ID
 var monster_targets = ["mvampire",
 					   	  "bat",

@@ -1,4 +1,3 @@
-load_code(99)
 //Send Items to merchant if in range of character
 setInterval(function ()
 {
