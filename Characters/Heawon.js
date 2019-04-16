@@ -40,8 +40,8 @@ setInterval(function ()
     if (player.visible == null) return;
     for(let i = 2; i < 40; i++) {
         if ((items[i]) != null) {
-			send_item(player, i, 1);
-            send_gold(player, 10000000)
+			      send_item(player, i, 1);
+            send_gold(player, 10000000);
         }
     }
 }, 1000);

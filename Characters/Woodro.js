@@ -49,7 +49,7 @@ function on_party_invite(name) {
 }
 
 //Target ID
-var monster_targets = ["croc", "phoenix"];
+var monster_targets = ["bat", "mvampire"];
 
 //Send Items to merchant if in range of character
 setInterval(function () {
