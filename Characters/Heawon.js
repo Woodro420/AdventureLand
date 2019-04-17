@@ -144,20 +144,5 @@ function combatScript(){
 		attack(target);
 	}
 }
-
-/*
-To prevent the communication between the server and your gameclient from
-choking we need to limit how often our code runs, so the server has time to
-process things. Below we will determine the amount of milliseconds that need to
-pass before the script is allowed to execute again (this is called a cycletime).
-*/
-
-// Loops every 1/4 seconds a.k.a. a cycletime of 250ms
 var cycleTime = (1000/4);
-
-/*
-Everything within the braces of setInterval() is executed at the chosen
-interval (through the "cycletime" parameter). This is where we call the
-combatScript function so it starts running.
-*/
 setInterval(combatScript, cycleTime);
