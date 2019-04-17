@@ -90,7 +90,7 @@ if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp <
 		}
 		else {
 			set_message("Nothing to target!");
-      if (parent.distance(character, player) < character.range){
+      if (parent.distance(character, Woodro) < character.range){
            stop(move)
 			     move(
 			     character.x + ((Woodro.x - character.x) + 0),
