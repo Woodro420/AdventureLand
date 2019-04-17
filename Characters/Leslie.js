@@ -66,7 +66,7 @@ function combatScript(){
 	If your mana or health is below its treshold use a HP and MP if applicable
 	*/
 if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp < 0.25) {
-  use_hp_or_mp();
+      use_hp_or_mp();
 }
 	//Loot everything in your current proximity
 	loot();
@@ -79,7 +79,7 @@ if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp <
 
 	//Declare your current target
 	var target = get_targeted_monster();
-  var Woodro = get_player("Woodro")
+    var Woodro = get_player("Woodro")
 	//If you currently have no target.
 	if (!target) {
 		//Aquire a new target and output it to the console.
@@ -89,19 +89,13 @@ if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp <
 		   if (target) change_target(target);
 		}
 		else {
+			//If there are no targets available output it to the console.
 			set_message("Nothing to target!");
-      if(Woodro == null) return;
-      if (parent.distance(character, Woodro) < character.range){
-           stop(move)
-			     move(
-			     character.x + ((Woodro.x - character.x) + 0),
-			     character.y + ((Woodro.y - character.y) - 15));
-         }
-    /* else {
-          if (!smart.moving) {
-          ask_location("Woodro")
-      }
-    }*/
+			move(
+			character.x + ((Woodro.x - character.x) + 0),
+			character.y + ((Woodro.y - character.y) - 15)
+			);
+			return;
 		}
 	}
 
@@ -138,19 +132,3 @@ interval (through the "cycletime" parameter). This is where we call the
 combatScript function so it starts running.
 */
 setInterval(combatScript, cycleTime);
-
-function move_to_target(target) {
-    if (can_move_to(target.real_x, target.real_y)) {
-        smart.moving = false;
-        smart.searching = false;
-        move(
-            character.real_x + (target.real_x - character.real_x) / 2,
-            character.real_y + (target.real_y - character.real_y) / 2
-        );
-    }
-    else {
-        if (!smart.moving) {
-            smart_move({ x: target.real_x, y: target.real_y });
-        }
-    }
-}
