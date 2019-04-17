@@ -97,11 +97,11 @@ if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp <
 			     character.x + ((Woodro.x - character.x) + 0),
 			     character.y + ((Woodro.y - character.y) - 15));
          }
-     else {
+    /* else {
           if (!smart.moving) {
           ask_location("Woodro")
       }
-     }
+    }*/
 		}
 	}
 
