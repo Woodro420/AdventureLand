@@ -82,7 +82,7 @@ setInterval(function () {
 }, 1000);
 //call merchant if lucky buff wears off or someone else puts one on you
 setInterval(function () {
-	let player = "Sozam"
+	let player = "Woegraf"
 	if (parent.character.s.mluck === undefined) {
 		give_location(player)
 	}
@@ -91,7 +91,7 @@ setInterval(function () {
 			give_location(player)
 		}
 	}
-	if (get_player("Sozam") != null) {
+	if (get_player("Woodro") != null) {
 		stop(move)
 		move(
 		character.x + ((player.x - character.x)),
