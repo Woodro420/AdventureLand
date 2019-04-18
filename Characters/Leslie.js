@@ -42,7 +42,7 @@ if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp <
 
 	//Declare your current target
 	var target = get_targeted_monster();
-    var Woodro = get_player("Woodro")
+  var Woodro = get_player("Woodro")
 	//If you currently have no target.
 	if (!target) {
 		//Aquire a new target and output it to the console.
@@ -65,17 +65,13 @@ if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp <
 
 	//If not in attack range of current target.
 	if (!in_attack_range(target)) {
-
-		//Move half the distance towards the target.
 		move(
 			character.x + ((target.x - character.x) / 2),
 			character.y + ((target.y - character.y) / 2)
 			);
 	}
-	//If in attack range, attack and output to the console.
 	else if (can_attack(target)) {
-
-		set_message("Attacking");
+    set_message("Attacking");
 		attack(target);
 	}
 }

@@ -67,7 +67,7 @@ function combatScript(){
 	will always cause your character to use both HP and MP regardless of
 	the amount of health or mana lost.
 	*/
-    var Woodro = get_player("Woodro");
+  var Woodro = get_player("Woodro");
 	var Leslie = get_player("Leslie");
 
 	//Current treshold for using a Health Potion
@@ -130,8 +130,6 @@ function combatScript(){
 
 	//If not in attack range of current target.
 	if (!in_attack_range(target)) {
-
-		//Move half the distance towards the target.
 		move(
 			character.x + ((target.x - character.x) / 2),
 			character.y + ((target.y - character.y) / 2)
