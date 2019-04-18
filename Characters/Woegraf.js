@@ -118,11 +118,11 @@ var upgradeWhitelist =
 var combineWhitelist =
 	{
 		//ItemName, Max Level
-		wbook0: 3,
+		wbook0: 4,
 		lostearring: 2,
-		strearring: 3,
-		intearring: 3,
-		dexearring: 3,
+		strearring: 4,
+		intearring: 4,
+		dexearring: 4,
 		strring: 3,
 		intring: 3,
 		dexring: 3,
