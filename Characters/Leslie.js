@@ -137,4 +137,3 @@ function move_to_target(target) {
             smart_move({ x: target.real_x, y: target.real_y });
         }
     }
-}
