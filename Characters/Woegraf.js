@@ -43,8 +43,7 @@ setInterval(function(){
       					}
       				}
       			}
-      			else
-      			{
+      			else {
       				//if they dont already have a boost then boost them
       				if(Math.sqrt((character.real_x-current.real_x)*
       								 (character.real_x-current.real_x)+
@@ -143,7 +142,7 @@ setInterval(function() {
 		   compound_items();
 	   }
   }
-}, 250);
+}, 1000);
 
 setInterval(function() {
   move_item_to_empty_slot(36);
@@ -161,11 +160,9 @@ function upgrade() {
 	for (let i = 0; i < character.items.length; i++)
 	{
 		let c = character.items[i];
-
-		if (c) {
+    if (c) {
 			var level = upgradeWhitelist[c.name];
-			if(level && c.level < level)
-			{
+			if(level && c.level < level) {
 				let grades = get_grade(c);
 				let scrollname;
 				if (c.level < grades[0])
@@ -232,7 +229,6 @@ function get_grade(item) {
 function find_item(filter) {
   for (let i = 0; i < character.items.length; i++) {
     let item = character.items[i];
-
     if (item && filter(item))
       return [i, character.items[i]];
   }
