@@ -1,37 +1,5 @@
-//Party Handler
-var group = ["Woodro", "Heawon", "Leslie"];
-
-setInterval(function () {
-    if (character.name == group[0]) {
-        for (let i = 1; i < group.length; i++) {
-            let name = group[i];
-            send_party_invite(name);
-        }
-    } else {
-        if (character.party) {
-            if (character.party != group[0]) {
-                parent.socket.emit("party", {event: "leave"})
-            }
-        } else {
-            send_party_request(group[0]);
-        }
-    }
-}, 1000 * 10);
-
-function on_party_request(name) {
-    console.log("Party Request");
-    if (group.indexOf(name) != -1) {
-        accept_party_request(name);
-    }
-}
-function on_party_invite(name) {
-    console.log("Party Invite");
-    if (group.indexOf(name) != -1) {
-        accept_party_invite(name);
-    }
-}
-
-//Send Items to merchant if in range of character
+load_code(99)
+//Send Items to merchant if in range
 setInterval(function ()
 {
     let items = parent.character.items
@@ -60,14 +28,9 @@ Everything within the braces of the function combatScript() is the syntax that
 will make your character do things, in this case fight.
 */
 function combatScript(){
-
-
-	/*
-	If your mana or health is below its treshold use a HP and MP if applicable
-	*/
 if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp < 0.25) {
-      use_hp_or_mp();
-}
+    use_hp_or_mp();
+    }
 	//Loot everything in your current proximity
 	loot();
 
@@ -79,7 +42,7 @@ if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp <
 
 	//Declare your current target
 	var target = get_targeted_monster();
-  var Woodro = get_player("Woodro")
+    var Woodro = get_player("Woodro")
 	//If you currently have no target.
 	if (!target) {
 		//Aquire a new target and output it to the console.
@@ -89,25 +52,21 @@ if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp <
 		   if (target) change_target(target);
 		}
 		else {
-      if (Woodro == null) return;
-      if (parent.distance(character, Woodro) < character.range){
-         stop(move)
-         move(
-			   character.x + ((Woodro.x - character.x) + 0),
-			   character.y + ((Woodro.y - character.y) - 15));
-      }
-      else{
-      if (!smart.moving) {
-        ask_location("Woodro")
-      }
-      }
-    }
-  }
-
+			//If there are no targets available output it to the console.
+			set_message("Nothing to target!");
+			move(
+			character.x + ((Woodro.x - character.x) + 0),
+			character.y + ((Woodro.y - character.y) - 15)
+			);
+			return;
+		}
+	}
 
 
 	//If not in attack range of current target.
 	if (!in_attack_range(target)) {
+
+		//Move half the distance towards the target.
 		move(
 			character.x + ((target.x - character.x) / 2),
 			character.y + ((target.y - character.y) / 2)
@@ -115,27 +74,11 @@ if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp <
 	}
 	//If in attack range, attack and output to the console.
 	else if (can_attack(target)) {
-    set_message("Attacking");
+
+		set_message("Attacking");
 		attack(target);
 	}
-
+}
 
 var cycleTime = (1000/4);
-
 setInterval(combatScript, cycleTime);
-function move_to_target(target) {
-    if (can_move_to(target.real_x, target.real_y)) {
-        smart.moving = false;
-        smart.searching = false;
-        move(
-            character.real_x + (target.real_x - character.real_x) / 2,
-            character.real_y + (target.real_y - character.real_y) / 2
-        );
-    }
-    else {
-        if (!smart.moving) {
-            smart_move({ x: target.real_x, y: target.real_y });
-        }
-    }
-  }
-}
