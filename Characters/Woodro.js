@@ -52,6 +52,21 @@ function on_party_invite(name) {
 var priority_targets = ["phoenix", "mvampire", "goldenbat"]
 var monster_targets = ["bat"];
 
+//calls merchant
+setInterval(function () {
+	let items = parent.character.items
+	let eggs = ["egg0", "egg1", "egg2", "egg3", "egg4", "egg5", "egg6", "egg7", "egg8", "goldenegg", "vitscroll", "cscale", "gem0"];
+	if ((items[36]) != null) {
+		give_location("Woegraf")
+	}
+	for(let i = 2; i < 42; i++) {
+		if ((items[i]) != null) {
+			if(eggs.indexOf(items[i].name) > -1) {
+				send_item("Heawon", i, 1)
+			}
+		}
+	}
+}, 1000 *10);
 //Send Items to merchant if in range of character
 setInterval(function () {
     let items = parent.character.items
@@ -65,6 +80,24 @@ setInterval(function () {
         }
     }
 }, 1000);
+//call merchant if lucky buff wears off or someone else puts one on you
+setInterval(function () {
+	let player = "Sozam"
+	if (parent.character.s.mluck === undefined) {
+		give_location(player)
+	}
+	else {
+		if (parent.character.s.mluck.f !== player) {
+			give_location(player)
+		}
+	}
+	if (get_player("Sozam") != null) {
+		stop(move)
+		move(
+		character.x + ((player.x - character.x)),
+		character.y + ((player.y - character.y)));
+	}
+}, 1000 * 60);
 
 
 var state = "farm";
