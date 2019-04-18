@@ -79,22 +79,22 @@ if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp <
 
 	//Declare your current target
 	var target = get_targeted_monster();
-  var Woodro = get_player("Woodro")
+  var player = get_player("Woodro")
 	//If you currently have no target.
 	if (!target) {
 		//Aquire a new target and output it to the console.
 		set_message("Targeting monster!");
-		target = get_target_of(Woodro);
+		target = get_target_of(player);
 		if (is_monster(target)) {
 		   if (target) change_target(target);
 		}
 		else {
-      if (Woodro == null) return;
-      if (parent.distance(character, Woodro) < character.range){
+      if (player == null) return;
+      if (parent.distance(character, player) < character.range){
          stop(move)
          move(
-			   character.x + ((Woodro.x - character.x) + 0),
-			   character.y + ((Woodro.y - character.y) - 15));
+			   character.x + ((player.x - character.x) + 0),
+			   character.y + ((player.y - character.y) - 15));
       }
       else{
       if (!smart.moving) {
