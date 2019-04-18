@@ -1,6 +1,6 @@
 //change these to determine your sitting spot in town you want these to match whats in your cmstuff.js
 var standx = -250
-var standy = -60.0000001
+var standy = -100.0000001
 
 setInterval(function () {
   items = character.items

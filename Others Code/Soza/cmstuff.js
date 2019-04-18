@@ -1,7 +1,7 @@
 const my_people = ["Woodro", "Heawon", "Leslie", "Woegraf", "Valcrum"];
 //change these to determine your sitting spot in town you want these to match whats in your merchant.js
 var standx = -250
-var standy = -60.0000001
+var standy = -100.0000001
 
 function ask_location(person) {
   //send the message to the person requesting
