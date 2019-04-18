@@ -1,6 +1,6 @@
 //change these to determine your sitting spot in town you want these to match whats in your cmstuff.js
-var standx = -240
-var standy = -50.0000001
+var standx = -250
+var standy = -60.0000001
 
 setInterval(function () {
   items = character.items
@@ -239,13 +239,6 @@ function find_item(filter) {
 
   return [-1, null];
 }
-
-
-//Draws a circle of range around merchant where his range is
-setInterval(function(){
-	clear_drawings()
-	draw_circle(character.real_x, character.real_y, 320)
-}, 100);
 
 var lastluck = new Date(0);
 function luck(target){
