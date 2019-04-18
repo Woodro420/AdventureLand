@@ -54,36 +54,12 @@ setInterval(function() {
 
 //Toggle for allowing the combat part of the code to execute whilst running.
 var attack_mode = true
-
-/*
-Everything within the braces of the function combatScript() is the syntax that
-will make your character do things, in this case fight.
-*/
 function combatScript(){
-	/*
-	To stop your character from using a potion everytime you lose a little bit
-	of health or mana we need to make sure it only happens when you are
-	below a minimum amount of health or mana. Note that once it executes it
-	will always cause your character to use both HP and MP regardless of
-	the amount of health or mana lost.
-	*/
   var Woodro = get_player("Woodro");
 	var Leslie = get_player("Leslie");
-
-	//Current treshold for using a Health Potion
-	//var useHPTreshold = character.max_hp / 2;
-	//Current treshold for using a Mana Potion
-	//var useMPTreshold = character.max_mp / 2;
-
-	/*
-	If your mana or health is below its treshold use a HP and MP if applicable
-	*/
 	if (character.hp / character.max_hp < 0.70 || character.mp / character.max_mp < 0.50)  {
-		//use_hp_or_mp();
 		heal(character)
 	    }
-
-	//Loot everything in your current proximity
 	loot();
 
 	//Healing the party
@@ -103,15 +79,11 @@ function combatScript(){
 	script.
 	*/
 	if (is_moving(character) || character.rip || !attack_mode) return;
-
-	//Declare your current target
+//Declare your current target
 	var target = get_targeted_monster();
-    //var Woodro = get_player("Woodro");
-	//var Valcrum = get_player("Valcrum");
-
-	//If you currently have no target.
+//If you currently have no target.
 	if (!target) {
-		//Aquire a new target and output it to the console.
+//Aquire a new target and output it to the console.
 		set_message("Targeting monster!");
 		target = get_target_of(Woodro);
 		if (is_monster(target)) {
@@ -137,8 +109,7 @@ function combatScript(){
 	}
 	//If in attack range, attack and output to the console.
 	else if (can_attack(target)) {
-
-		set_message("Attacking");
+    set_message("Attacking");
 		attack(target);
 	}
 }

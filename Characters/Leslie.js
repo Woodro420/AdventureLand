@@ -1,4 +1,3 @@
-load_code(99)
 //Send Items to merchant if in range
 setInterval(function ()
 {
@@ -22,22 +21,11 @@ setInterval(function() {
 
 //Toggle for allowing the combat part of the code to execute whilst running.
 var attack_mode = true
-
-/*
-Everything within the braces of the function combatScript() is the syntax that
-will make your character do things, in this case fight.
-*/
 function combatScript(){
 if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp < 0.25) {
     use_hp_or_mp();
     }
-	//Loot everything in your current proximity
 	loot();
-
-	/*
-	If you are moving, dead or not attacking don't execute the rest of the
-	script.
-	*/
 	if (is_moving(character) || character.rip || !attack_mode) return;
 
 	//Declare your current target
@@ -61,9 +49,7 @@ if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp <
 			return;
 		}
 	}
-
-
-	//If not in attack range of current target.
+//If not in attack range of current target.
 	if (!in_attack_range(target)) {
 		move(
 			character.x + ((target.x - character.x) / 2),
