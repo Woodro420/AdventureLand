@@ -93,9 +93,15 @@ function combatScript(){
 	var LesMHP = (get_player("Leslie").max_hp);
 	    if (WoodCHP / WoodMHP < 0.90) {
 		   heal(Woodro);
+       else {
+         return;
+       }
 	    }
 	    else if (LesCHP / LesMHP < 0.90) {
-		   heal(Leslie);
+		   heal(Leslie);\
+       else {
+         return;
+       }
 	    }
 
 	/*
