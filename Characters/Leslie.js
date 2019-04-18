@@ -118,7 +118,6 @@ if (character.hp / character.max_hp < 0.50 || character.mp /  character.max_mp <
     set_message("Attacking");
 		attack(target);
 	}
-}
 
 
 var cycleTime = (1000/4);
