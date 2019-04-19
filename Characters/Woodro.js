@@ -76,7 +76,7 @@ setInterval(function () {
     for(let i = 2; i < 40; i++) {
         if ((items[i]) != null) {
             send_item(player, i, 1);
-			send_gold(player, 10000000)
+						send_gold(player, 10000000)
         }
     }
 }, 1000);
@@ -177,6 +177,20 @@ function farm()
 	}
 	else
 	{
+		let Woegraf = get_player("Woegraf");
+if (Woegraf != null && parent.character.s.mluck === undefined) {
+	move_to_target(Woegraf)
+}
+if (parent.character.s.mluck !== undefined) {
+	if (Woegraf != null && parent.character.s.mluck.f !== "Woegraf") {
+		move_to_target(Woegraf)
+	}
+}
+if (parent.character.s.mluck !== undefined) {
+	if (Woegraf != null && parent.character.s.mluck.f === "Woegraf") {
+		send_cm("Woegraf", "thanks")
+	}
+}
 		var target = find_viable_targets()[0];
 		//Attack or move to target
 	    if (target != null) {
