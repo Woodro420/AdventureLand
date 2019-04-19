@@ -94,8 +94,8 @@ setInterval(function () {
 	if (get_player("Woodro") != null) {
 		stop(move)
 		move(
-		character.x + ((player.x - character.x)),
-		character.y + ((player.y - character.y)));
+		    character.x + ((player.x - character.x)),
+		    character.y + ((player.y - character.y)));
 	}
 }, 1000 * 60);
 
