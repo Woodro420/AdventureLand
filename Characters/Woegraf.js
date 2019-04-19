@@ -120,9 +120,9 @@ var combineWhitelist =
 		//ItemName, Max Level
 		wbook0: 4,
 		lostearring: 2,
-		strearring: 4,
-		intearring: 4,
-		dexearring: 4,
+		strearring: 3,
+		intearring: 3,
+		dexearring: 3,
 		strring: 3,
 		intring: 3,
 		dexring: 3,
