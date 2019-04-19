@@ -50,7 +50,7 @@ function on_party_invite(name) {
 
 //Target ID
 var priority_targets = ["phoenix", "mvampire", "goldenbat"]
-var monster_targets = ["bat"];
+var monster_targets = ["bat", "cgoo"];
 
 //calls merchant
 setInterval(function () {
